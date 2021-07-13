@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>ToDo App</title>
+  </head>
+<body>
+  
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">ToDo App</a>
+    </nav>
+ <div class="container">
+
+    <h3>My ToDo page:</h3>
+  
+    <ul class="list-group">
+        {%for todo_item in all_items%}   
+          <li class="list-group-item"> 
+            {{todo_item.content}}
+            <form method="post"
+            style="display: inline;"
+            action="/deleteTodo/{{todo_item.id}}/">
+            
+              {% csrf_token %}
+              <input class="btn btn-danger btn-sm" type="submit" value="delete"/>
+              <br>
+            </form>
+    
+          </li> 
+          {% endfor %}
+    </ul>
+    <hr>
+    
+    <form id="myform" method="post" action="/addToDo/">
+      {% csrf_token %}
+      <input type="text" name="content" size="50" /><a href="#" onclick="document.getElementById('myform').submit();return false;">Let's go!</a></form>
+  
+  
+  </div>
+ 
+
+</body>
+</html>
+
+
+
+
+
+
+
+
